@@ -1,144 +1,285 @@
-<h1 style='text-align: start;color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);font-family: "'>Dopasuj pojęcie do definicji</h1>
-<p style='text-align: start;color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);font-size: medium;font-family: "'>Przeczytaj poniższe definicje i wybierz z listy rozwijanej pasujące do nich pojęcie.</p>
-<div id="quiz-container" style='text-align: start;color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);font-size: medium;font-family: "'>
-    <div id="question-0" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">1. Wskaźnik określający łączny czas spędzony na korzystaniu z urządzeń cyfrowych, pozwalający przeanalizować podział aktywności na naukę, pracę oraz rozrywkę.</p><select id="select-0" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberbezpieczeństwo - Interaktywny Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: #444;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        .question-box {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .question-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+        }
+        .question-box p {
+            margin-top: 0;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 1.05em;
+        }
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: #495057;
+            background-color: #fff;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        select:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #check-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+        #check-btn:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        #reset-btn {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #d63031;
+            display: none;
+        }
+        #reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .correct {
+            background-color: #f1fbf4 !important;
+            border-color: #2ecc71 !important;
+        }
+        .incorrect {
+            background-color: #fdf3f2 !important;
+            border-color: #e74c3c !important;
+        }
+        #result {
+            margin-top: 30px;
+            font-size: 1.4em;
+            text-align: center;
+            font-weight: 600;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        .result-success {
+            background-color: #e8f8f5;
+            color: #16a085;
+            border: 2px solid #1abc9c;
+        }
+        .result-error {
+            background-color: #fcf3f2;
+            color: #c0392b;
+            border: 2px solid #e74c3c;
+        }
+        
+        /* Styl dla numerków */
+        .q-number {
+            display: inline-block;
+            background: #e9ecef;
+            color: #495057;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🛡️ Cyfrowe Wyzwanie</h1>
+        <p>Połącz odpowiednie pojęcia z ich definicjami, aby sprawdzić swoją wiedzę o cyberbezpieczeństwie!</p>
     </div>
-    <div id="question-1" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">2. Nawykowe i bezrefleksyjne przeglądanie negatywnych wiadomości oraz doniesień o kryzysach w sieci, pomimo wywoływanego przez to lęku, smutku i przytłoczenia.</p><select id="select-1" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
+    
+    <div id="quiz-container"></div>
+    
+    <div class="buttons-container">
+        <button id="check-btn" onclick="checkAnswers()">✨ Sprawdź odpowiedzi</button>
+        <button id="reset-btn" onclick="resetQuiz()">🔄 Spróbuj ponownie</button>
     </div>
-    <div id="question-2" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">3. Zjawisko lekceważenia os&oacute;b w bezpośrednim otoczeniu (np. podczas rozmowy lub spotkania) poprzez ciągłe zerkanie w ekran smartfona lub przeglądanie aplikacji.</p><select id="select-2" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-3" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">4. Wyłudzanie poufnych danych (np. login&oacute;w, haseł) poprzez podszywanie się pod zaufane instytucje (np. banki, firmy kurierskie) w wiadomościach e-mail lub SMS zawierających fałszywe linki.</p><select id="select-3" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-4" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">5. Stan r&oacute;wnowagi między życiem w świecie wirtualnym a realnym, w kt&oacute;rym technologia służy człowiekowi, a nie go kontroluje.</p><select id="select-4" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-5" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">6. Metoda zabezpieczenia kont i transakcji internetowych wymagająca podania dw&oacute;ch niezależnych element&oacute;w weryfikacji (np. hasła oraz kodu SMS lub potwierdzenia w aplikacji mobilnej).</p><select id="select-5" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-6" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">7. Aplikacja na smartfonie lub usługa online, kt&oacute;ra bezpiecznie przechowuje dane kart płatniczych i umożliwia dokonywanie płatności.</p><select id="select-6" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-7" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">8. Automatycznie odnawiane opłaty za cykliczny dostęp do usług cyfrowych lub drobne zakupy wewnątrz aplikacji oraz gier (np. za cyfrowe dodatki lub konta premium).</p><select id="select-7" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-8" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">9. Usługa pozwalająca na dokonanie zakupu i odroczenie spłaty (np. o 30 dni) bez dodatkowych koszt&oacute;w, stanowiąca formę kr&oacute;tkoterminowego kredytu.</p><select id="select-8" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
-    <div id="question-9" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">
-        <p style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">10. Lęk przed pominięciem ważnych informacji, wydarzeń czy doświadczeń społecznych, wywołujący przymus ciągłego sprawdzania telefonu oraz natychmiastowego reagowania na powiadomienia.</p><select id="select-9" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<option value="" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">-- Wybierz pojęcie --</option>
-            <option value="Cyfrowy portfel" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Cyfrowy portfel</option>
-            <option value="Czas ekranowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Czas ekranowy</option>
-            <option value="Dobrostan cyfrowy" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Dobrostan cyfrowy</option>
-            <option value="Doomscrolling" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Doomscrolling</option>
-            <option value="FOMO" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">FOMO</option>
-            <option value="Mikropłatności" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Mikropłatności</option>
-            <option value="Phishing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phishing</option>
-            <option value="Phubbing" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Phubbing</option>
-            <option value="Płatności odroczone" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Płatności odroczone</option>
-            <option value="Weryfikacja dwuetapowa" style="color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0);">Weryfikacja dwuetapowa</option>
-        </select>
-    </div>
+    <div id="result"></div>
 </div>
+
+<script>
+    const quizData = [
+        { definition: "Aplikacja na smartfonie lub usługa online, która bezpiecznie przechowuje dane kart płatniczych i umożliwia dokonywanie płatności.", answer: "Cyfrowy portfel" },
+        { definition: "Stan równowagi między życiem w świecie wirtualnym a realnym, w którym technologia służy człowiekowi, a nie go kontroluje.", answer: "Dobrostan cyfrowy" },
+        { definition: "Metoda zabezpieczenia kont i transakcji internetowych wymagająca podania dwóch niezależnych elementów weryfikacji (np. hasła oraz kodu SMS lub potwierdzenia w aplikacji mobilnej).", answer: "Weryfikacja dwuetapowa" },
+        { definition: "Usługa pozwalająca na dokonanie zakupu i odroczenie spłaty (np. o 30 dni) bez dodatkowych kosztów, stanowiąca formę krótkoterminowego kredytu.", answer: "Płatności odroczone" },
+        { definition: "Automatycznie odnawiane opłaty za cykliczny dostęp do usług cyfrowych lub drobne zakupy wewnątrz aplikacji oraz gier (np. za cyfrowe dodatki lub konta premium).", answer: "Mikropłatności" },
+        { definition: "Wskaźnik określający łączny czas spędzony na korzystaniu z urządzeń cyfrowych, pozwalający przeanalizować podział aktywności na naukę, pracę oraz rozrywkę.", answer: "Czas ekranowy" },
+        { definition: "Zjawisko lekceważenia osób w bezpośrednim otoczeniu (np. podczas rozmowy lub spotkania) poprzez ciągłe zerkanie w ekran smartfona lub przeglądanie aplikacji.", answer: "Phubbing" },
+        { definition: "Nawykowe i bezrefleksyjne przeglądanie negatywnych wiadomości oraz doniesień o kryzysach w sieci, pomimo wywoływanego przez to lęku, smutku i przytłoczenia.", answer: "Doomscrolling" },
+        { definition: "Lęk przed pominięciem ważnych informacji, wydarzeń czy doświadczeń społecznych, wywołujący przymus ciągłego sprawdzania telefonu oraz natychmiastowego reagowania na powiadomienia.", answer: "FOMO" },
+        { definition: "Wyłudzanie poufnych danych (np. loginów, haseł) poprzez podszywanie się pod zaufane instytucje (np. banki, firmy kurierskie) w wiadomościach e-mail lub SMS zawierających fałszywe linki.", answer: "Phishing" }
+    ];
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const options = quizData.map(q => q.answer).sort();
+    let shuffledData = [];
+
+    function renderQuiz() {
+        shuffledData = shuffle([...quizData]);
+        const quizContainer = document.getElementById('quiz-container');
+        quizContainer.innerHTML = ''; 
+
+        shuffledData.forEach((item, index) => {
+            const box = document.createElement('div');
+            box.className = 'question-box';
+            box.id = 'question-' + index;
+            
+            let selectHTML = `<select id="select-${index}">
+                <option value="">Wybierz pojęcie z listy...</option>`;
+            options.forEach(opt => {
+                selectHTML += `<option value="${opt}">${opt}</option>`;
+            });
+            selectHTML += `</select>`;
+
+            box.innerHTML = `<p><span class="q-number">${index + 1}</span> ${item.definition}</p>` + selectHTML;
+            box.dataset.answer = item.answer;
+            quizContainer.appendChild(box);
+        });
+    }
+
+    function checkAnswers() {
+        let score = 0;
+        let allAnswered = true;
+
+        shuffledData.forEach((item, index) => {
+            const select = document.getElementById('select-' + index);
+            if (select.value === "") {
+                allAnswered = false;
+            }
+        });
+
+        if (!allAnswered) {
+            alert("⚠️ Hej! Wygląda na to, że pominąłeś niektóre pytania. Uzupełnij wszystkie pola przed sprawdzeniem.");
+            return;
+        }
+
+        shuffledData.forEach((item, index) => {
+            const box = document.getElementById('question-' + index);
+            const select = document.getElementById('select-' + index);
+            const userAnswer = select.value;
+            const correctAnswer = box.dataset.answer;
+
+            box.classList.remove('correct', 'incorrect');
+            select.disabled = true; 
+
+            if (userAnswer === correctAnswer) {
+                box.classList.add('correct');
+                score++;
+            } else {
+                box.classList.add('incorrect');
+            }
+        });
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+        
+        if (score === quizData.length) {
+            resultDiv.className = 'result-success';
+            resultDiv.innerHTML = `🎉 Fenomenalnie! Twój wynik to ${score}/${quizData.length}.<br><span style="font-size:0.8em; font-weight:400;">Znasz wszystkie pojęcia perfekcyjnie!</span>`;
+        } else {
+            resultDiv.className = 'result-error';
+            resultDiv.innerHTML = `🧐 Twój wynik to ${score}/${quizData.length}.<br><span style="font-size:0.8em; font-weight:400;">Sprawdź zaznaczone na czerwono odpowiedzi i spróbuj jeszcze raz!</span>`;
+        }
+
+        document.getElementById('check-btn').style.display = 'none';
+        document.getElementById('reset-btn').style.display = 'block';
+    }
+
+    function resetQuiz() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'none';
+        resultDiv.className = '';
+        
+        document.getElementById('check-btn').style.display = 'block';
+        document.getElementById('reset-btn').style.display = 'none';
+        renderQuiz(); 
+    }
+
+    window.onload = renderQuiz;
+</script>
+
+</body>
+
